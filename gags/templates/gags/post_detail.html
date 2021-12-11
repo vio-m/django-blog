@@ -1,0 +1,73 @@
+{% extends "gags/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<article class="media content-section">
+    <div class="media border p-3">
+        <img style="float:left" class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="Profile Image">
+        <figure class="text-justify">
+            <blockquote class="blockquote txt">
+                <p>{{ object.title }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                <cite title="Source Title">Posted by <a class="mr-2 txt" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a> on {{ object.date_posted|date:"d M Y" }}</cite>
+            </figcaption>
+        </figure>
+    </div>
+
+
+    <!-- CATEGORY & TAGS -->
+
+    <div class="media-body">
+        <div class="cont">
+            <div class="cntr">
+                <div class="article-metadata"><span class="material-icons inline">double_arrow</span> {{ post.category }}    {{ post.tag }}</div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="mt-3 mb-3">
+            {% if post.image.url is not null %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+            {% endif %}
+            <p class="article-content">{{ object.content|safe }}</p>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="cont">
+            <div class="cntr">
+                <div class="btn-group cntr" role="group" aria-label="Basic outlined example">
+                    <a href="{% url 'upvote' post.pk %}" class="btn btn-outline-secondary btn-sm" role="button" title="Upvote"><span class="material-icons inline pdl pdr">thumb_up</span><span class="badge bg-secondary">{{ post.total_upvotes.votes__upvote__sum|default:'0' }} </span></a>
+                    <a href="{% url 'downvote' post.pk %}" class="btn btn-outline-secondary btn-sm" role="button" title="Downvote"><span class="material-icons inline pdl pdr">thumb_down</span><span class="badge bg-secondary">{{ post.total_downvotes.votes__downvote__sum|default:'0' }} </span></a>
+                    <a href="{% url 'add_comment' post.pk %}"  class="btn btn-outline-secondary btn-sm" role="button" title="Comment"><span class="material-icons pdl pdr">comment</span></a>
+                    {% if object.author == user %}
+                    <a class="btn btn-secondary btn-sm" href="{% url 'post-update' object.id %}" title="Update"><span class="material-icons pdl pdr">update</span></a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'post-delete' object.id %}" title="Delete"><span class="material-icons pdl pdr">delete</span></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- COMMENTS -->
+
+        <div class="col-md-12 card mb-3  mt-3 ">
+            {% for comment in post.top_comments %}
+            <div class="comments txt bg" style="padding: 10px;">
+                <cite class="font-weight-bold">"{{ comment.name }}" <span class=" text-muted font-weight-normal">on {{ comment.created_on }}</span>
+                    {{ comment.body | linebreaks }}</cite>
+                {% for reply in post.replies %}
+                {% if comment.id == reply.parent_id %}
+                <div class="comments" style="padding: 10px;">
+                    <cite>{{ reply.body | linebreaks }}</cite>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+</article>
+
+
+{% endblock content %}
+

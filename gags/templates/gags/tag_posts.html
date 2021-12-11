@@ -1,0 +1,37 @@
+{% extends "gags/base.html" %}
+{% block content %}
+<h1 class="mb-3">Posts in {{ view.kwargs.tag }}</h1>
+
+
+{% for post in posts %}
+<article class="media content-section">
+
+    <div class="media border p-3">
+        <div class="article-metadata">
+            <img style="float:left" class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="Profile Image">
+            <figure class="text-justify">
+                <blockquote class="blockquote">
+                    <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title"> Posted by <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a> on {{ post.date_posted|date:"d M Y" }}</cite>
+                </figcaption>
+            </figure>
+        </div>
+
+
+        <!-- CONTENT -->
+        <p class="article-content">{{ post.content|safe|truncatechars:130 }}</p>
+        {% if post.image.url is not null %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+        {% endif %}
+        <br>
+        <!-- COMMENTS and LIKES -->
+        <strong class="mr-2" href="{% url 'post-detail' post.id %}">{{ post.comments.count }} comments, {{ post.total_upvotes.votes__upvote__sum|default:'0' }} likes</strong>
+    </div>
+</article>
+
+{% endfor %}
+
+{% endblock %}
+

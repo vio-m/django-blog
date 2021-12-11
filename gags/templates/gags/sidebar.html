@@ -1,0 +1,49 @@
+
+
+
+
+<div>
+
+
+
+
+    <div class="search-container">
+        <form action="/search/" method="GET">
+            <div class="col-md-13">
+                <input class="form-control" type="text" name="q"  placeholder="Search..." aria-label="Search" title="Search for a post">
+            </div>
+            <button type="submit" class="search-container button"><span class="material-icons">search</span></button>
+        </form>
+    </div>
+
+
+
+
+    <br>
+    <div class="tag">
+        {% for post in posts|dictsort:'tag' %}
+        {% ifchanged %}
+        <a class="tag bg" type="button" class="btn btn-sm" href="{% url 'tag-posts' post.tag %}">{{ post.tag }}</a>
+        {% endifchanged %}
+        {% endfor %}
+    </div>
+
+
+
+    <div class="cat bg">
+        {% for category in category_list %}
+        <a class="" href="{% url 'category-view' category.id %}" title="Select category"> <span class="material-icons inline pdr ">double_arrow</span> {{ category }}</a>
+        {% endfor %}
+    </div>
+
+
+    <div class="card">
+        <img class="card-img-top" src="/media/merchandise.jpg" alt="merch">
+        <a class="card-footer bg" href="#" title="Enter Store">Shop coming soon</a>
+    </div>
+    <br>
+    <div class="card">
+        <img class="card-img-top" src="/media/django.jpg" alt="Django">
+        <a class="card-footer bg" href="#">Django place-holder</a>
+    </div>
+</div>

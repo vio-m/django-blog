@@ -1,0 +1,94 @@
+.main {
+border-radius: 5px;
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+}
+
+aside {
+background-color: black;
+border-radius: 5px;
+}
+
+.content {
+  float: left;
+  margin: 0 1.5%;
+  width: 60%;
+  border-radius: 5px;
+}
+
+.sidebar {
+float: right;
+margin: 0 0.5%;
+width: 20%;
+}
+
+footer {
+clear: both;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: #cbd5db;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+color: #ffffff;;
+}
+
+/* SEARCH BAR */
+.search-container {
+float: left;
+width: 100%;
+}
+
+.search-box {
+width: 100%;
+}
+
+.search-container button {
+  float: right;
+  background: black;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+}
+
+.search-container button:hover {
+background-color: #5f788a;
+}
+
+.tag {
+float: left;
+width: 100%;
+text-align: left;
+}
+
+.cat {
+float: left;
+width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

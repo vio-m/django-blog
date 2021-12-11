@@ -1,0 +1,35 @@
+{% extends "gags/base.html" %}
+{% block content %}
+<h1 class="mb-3">Search results:</h1>
+
+
+{% if results %}
+
+{% for post in results %}
+
+<article class="media content-section">
+    <div class="media border p-3">
+        <img style="float:left" class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="Profile Image">
+        <figure class="text-justify">
+            <blockquote class="blockquote">
+                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                <cite title="Source Title">Posted by <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a> on {{ post.date_posted|date:"d M Y" }}</cite>
+            </figcaption>
+        </figure>
+    </div>
+</article>
+
+{% endfor %}
+
+{% elif empty %}
+
+<h2 class="mb-3">NO RESULTS FOUND</h2>
+
+{% endif %}
+
+{% endblock %}
+
+
+
