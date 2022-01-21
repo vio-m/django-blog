@@ -91,8 +91,7 @@ class PostCommentView(LoginRequiredMixin, CreateView):
 
 
 
-#class PostVoteView(LoginRequiredMixin, RedirectView):
-#    model = Vote
+
 
 def upvote(request, pk):
     post_id = Post.objects.get(pk=pk)
@@ -168,28 +167,5 @@ def search(request):
 
 
 
-# Choices are: author, author_id, category, category_id, comments, content, date_posted, id, image, tag, title, votes
-#
-#
 
-'''
-class SearchListView(ListView):
-    model = Post
-    template_name = 'gags/searched.html'
-    context_object_name = 'all_search_results'
 
-    def get_context_data(self, **kwargs):
-        context = super(SearchListView, self).get_context_data(**kwargs)
-        context.update({
-            'all_posts': Post.objects.all(),
-        })
-        return context
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        print('query', query)
-        if query:
-            return Post.objects.filter(title__icontains=query)
-        else:
-            return Post.objects.all()
-'''

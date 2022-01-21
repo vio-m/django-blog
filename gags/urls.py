@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, \
     PostDeleteView, UserPostListView, PostCommentView,  TagPostListView, \
-    CategoryListView #SearchListView#PostVoteView,
+    CategoryListView
 from . import views
 
 urlpatterns = [
@@ -23,4 +23,3 @@ urlpatterns = [
 ]
 
 
-#    path('post/<int:pk>/<str:slug>/', views.post_comment.as_view(), name='addcomment'),    path('post/<int:pk>/like/', views.like, name="like"),

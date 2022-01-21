@@ -16,10 +16,7 @@ class Category(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-    #def get_all_objects(self):
-    #    queryset = self.__class__.objects.all()
-    #    print(queryset)
-    #    return queryset
+
 
 
 class Post(models.Model):

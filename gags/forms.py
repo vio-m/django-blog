@@ -1,7 +1,7 @@
 from .models import Comment, Post, Category
 from django import forms
 
-choices = Category.objects.all().values_list('name', 'name') #[('programming_humor', 'programming_humor'),('derpy_pets', 'derpy_pets'),('silly_vanilly', 'silly_vanilly'),('general_lulz', 'general_lulz'),('4_keks', '4_keks')]
+choices = Category.objects.all().values_list('name', 'name')
 
 
 class CommentForm(forms.ModelForm):

@@ -41,6 +41,9 @@
                     <li class="nav-item">
                         <a class="nav-item nav-link" href="{% url 'gags-top'%}" title="Best Posts">Top</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="{% url 'store' %}"><span class="material-icons">store</span></a>
+                    </li>
                     <li class="navbar-nav nav-item dropdown">
                         {% if user.is_authenticated %}
                         <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown" ><span class="material-icons md-18 inline pdr">face</span>  {{ user }}  </a>
